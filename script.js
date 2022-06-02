@@ -9,26 +9,22 @@ let courses = [
   { name: "Courses in France", prices: [null, null] },
 ];
 
-const priceMin =  document.querySelector('.priceMin')
-const priceMax =  document.querySelector('.priceMax')
-const button =  document.querySelector('.button')
-const resultWrap =  document.querySelector('.result')
+const priceMin =  document.querySelector('.priceMin');
+const priceMax =  document.querySelector('.priceMax');
+const button =  document.querySelector('.button');
+const resultWrap =  document.querySelector('.result');
 
-console.log(priceMin)
-console.log(priceMax)
-
-const userValue = []
+const userValue = [];
 
 button.addEventListener('click', (event) => {
   userValue[0] = Number(priceMin.value);
   userValue[1] = Number(priceMax.value);
-  const getresult = gerCourse(userValue)
-  console.log(getresult)
-  showResult(getresult)
+  const getresult = gerCourse(userValue);
+  showResult(getresult);
 });
 
 function showResult(arr) {
-  console.log(courses)
+  console.log('Ответ', courses);
   arr.forEach(el => resultWrap.innerHTML += `<div>${el.name} </div>`);
 }
 
@@ -39,19 +35,19 @@ let requiredRange1 = [null, 200];
 let requiredRange2 = [100, 350];
 let requiredRange3 = [200, null];
 
-let coursesList = document.querySelector('.coursesList')
+let coursesList = document.querySelector('.coursesList');
 courses.forEach(el => coursesList.innerHTML += `<div>${el.name} </div>`);
 
 
 function gerCourse(arr) {
 let [firstCellUser, SecondCellUser] = arr;
-const result = []
+const result = [];
 for( i = 0; i < courses.length; i ++) {
 let firstCellCource = courses[i].prices[0];
 let secondCellCource = courses[i].prices[1];
 
 firstCellUser === null ? firstCellUser = 0 : firstCellUser;
-SecondCellUser === null ? SecondCellUser = 0 : SecondCellUser;
+SecondCellUser === null ? SecondCellUser = Infinity : SecondCellUser;
 firstCellCource === null  ? firstCellCource = 0 : firstCellCource;
 secondCellCource === null ? secondCellCource = Infinity : firstCellCource;
 
@@ -59,7 +55,6 @@ if( firstCellUser >= firstCellCource || SecondCellUser >= secondCellCource ||  f
 result.push(courses[i]);
 
   }
-
 } 
   return result
 }
